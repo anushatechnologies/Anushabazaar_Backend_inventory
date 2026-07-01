@@ -164,8 +164,8 @@ export function generateSaleInvoicePDF(sale, stream) {
       count.toString(),
       item.product ? `${item.product.name} (${item.product.productCode})` : 'Unknown Product',
       `${item.quantity} ${item.unit}`,
-      `₹ ${formatAmount(item.sellingPrice)}`,
-      `₹ ${formatAmount(item.amount)}`
+      formatAmount(item.sellingPrice),
+      formatAmount(item.amount)
     ];
 
     rowData.forEach((val, idx) => {
@@ -199,11 +199,11 @@ export function generateSaleInvoicePDF(sale, stream) {
   let currentSumY = summaryY;
 
   const summaryRows = [
-    { label: 'Subtotal:', val: `₹ ${formatAmount(sale.subtotal)}` },
-    { label: 'Discount:', val: `₹ ${formatAmount(sale.discount)}` },
-    { label: 'GST Amount:', val: `₹ ${formatAmount(sale.gst)}` },
-    { label: 'Transport Charges:', val: `₹ ${formatAmount(sale.transportCharges)}` },
-    { label: 'Grand Total:', val: `₹ ${formatAmount(sale.grandTotal)}`, bold: true }
+    { label: 'Subtotal:', val: formatAmount(sale.subtotal) },
+    { label: 'Discount:', val: formatAmount(sale.discount) },
+    { label: 'GST Amount:', val: formatAmount(sale.gst) },
+    { label: 'Transport Charges:', val: formatAmount(sale.transportCharges) },
+    { label: 'Grand Total:', val: formatAmount(sale.grandTotal), bold: true }
   ];
 
   summaryRows.forEach(row => {
@@ -306,8 +306,8 @@ export function generatePurchaseInvoicePDF(purchase, stream) {
       count.toString(),
       item.product ? `${item.product.name} (${item.product.productCode})` : 'Unknown Product',
       `${item.quantity} ${item.unit}`,
-      `₹ ${formatAmount(item.purchasePrice)}`,
-      `₹ ${formatAmount(item.amount)}`
+      formatAmount(item.purchasePrice),
+      formatAmount(item.amount)
     ];
 
     rowData.forEach((val, idx) => {
@@ -340,10 +340,10 @@ export function generatePurchaseInvoicePDF(purchase, stream) {
   let currentSumY = summaryY;
 
   const summaryRows = [
-    { label: 'Subtotal:', val: `₹ ${formatAmount(purchase.subtotal)}` },
-    { label: 'Discount:', val: `₹ ${formatAmount(purchase.discount)}` },
-    { label: 'GST Amount:', val: `₹ ${formatAmount(purchase.gst)}` },
-    { label: 'Grand Total:', val: `₹ ${formatAmount(purchase.grandTotal)}`, bold: true }
+    { label: 'Subtotal:', val: formatAmount(purchase.subtotal) },
+    { label: 'Discount:', val: formatAmount(purchase.discount) },
+    { label: 'GST Amount:', val: formatAmount(purchase.gst) },
+    { label: 'Grand Total:', val: formatAmount(purchase.grandTotal), bold: true }
   ];
 
   summaryRows.forEach(row => {
