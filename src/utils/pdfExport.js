@@ -20,9 +20,10 @@ function buildPDFHeader(doc, titleText) {
   const logoPath = path.join(__dirname, '..', 'resources', 'logo.png');
   if (fs.existsSync(logoPath)) {
     try {
-      doc.image(logoPath, {
-        fit: [120, 60],
-        align: 'center'
+      const imageWidth = 120;
+      const centerX = (doc.page.width - imageWidth) / 2;
+      doc.image(logoPath, centerX, doc.y, {
+        fit: [120, 60]
       });
       // Move cursor down explicitly past the image height since image doesn't advance it
       doc.y += 65;
