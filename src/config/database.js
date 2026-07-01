@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import mysql2 from 'mysql2';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -11,6 +12,7 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     port: process.env.DB_PORT || 3306,
     dialect: 'mysql',
+    dialectModule: mysql2,
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
     define: {
       timestamps: false, // We'll manage timestamps manually where needed or use Sequelize default options per model
